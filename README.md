@@ -1,4 +1,4 @@
-## Laravel API Documentation Generator (fork for IgnitiwonWolf/wolf-api)
+## Laravel API Documentation Generator (fork for IgnitionWolf/wolf-api)
 
 This is automatically bundled into IgnitionWolf/wolf-api.
 
