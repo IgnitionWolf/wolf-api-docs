@@ -21,6 +21,22 @@ class GetFromDocBlocks extends Strategy
 
         list($routeGroupName, $routeGroupDescription, $routeTitle) = $this->getRouteGroupDescriptionAndTitle($methodDocBlock, $classDocBlock);
 
+        $defaultGroupName = null;
+
+        if ($controller->isSubclassOf('IgnitionWolf\API\Controllers\EntityController')) {
+            $entity = explode('\\', $controller->getStaticProperties()['entity']);
+            $defaultGroupName = end($entity);
+        
+            $routeTitle = str_replace('entity', $defaultGroupName, $routeTitle);
+            $routeTitle = str_replace('entities', \Str::plural($defaultGroupName), $routeTitle);
+        } elseif ($controller->isSubclassOf('IgnitionWolf\API\Controllers\BaseController')) {
+            $defaultGroupName = str_replace('Controller', '', $controller->getShortName());
+        }
+
+        if ((!$routeGroupName || $routeGroupName == $this->config->get('default_group')) && $defaultGroupName) {
+            $routeGroupName = $defaultGroupName;
+        }
+
         return [
             'groupName' => $routeGroupName,
             'groupDescription' => $routeGroupDescription,
