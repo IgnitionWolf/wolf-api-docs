@@ -55,9 +55,13 @@ class GetFromQueryParamTag extends Strategy
                 $options = RequestValidator::getPossibleRequests($namespace, end($entity), ucfirst($methodName));
 
                 foreach ($options as $option) {
-                    if (class_exists($option)) {
-                        $formRequest = new ReflectionClass($option);
-                        break;
+                    try {
+                        if (class_exists($option)) {
+                            $formRequest = new ReflectionClass($option);
+                            break;
+                        }
+                    } catch (\Exception $e) {
+                        //
                     }
                 }
             }
