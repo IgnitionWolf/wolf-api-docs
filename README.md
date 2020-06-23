@@ -1,4 +1,6 @@
-## Laravel API Documentation Generator
+## Laravel API Documentation Generator (fork for IgnitionWolf/wolf-api)
+
+This is automatically bundled into IgnitionWolf/wolf-api.
 
 Automatically generate your API documentation from your existing Laravel/Lumen/[Dingo](https://github.com/dingo/api) routes.
 
